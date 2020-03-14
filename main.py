@@ -1,3 +1,7 @@
+"""
+recieves measurements from arduino and sends it to pi,
+also controls relay for lamp
+"""
 import socket
 from time import sleep
 from machine import Pin, UART
@@ -24,7 +28,7 @@ while True:
     except:
         print('no time available')
     print('localtime ', utime.localtime()[3])
-    if (18 <= utime.localtime()[3] or utime.localtime()[3] <= 1):
+    if (utime.localtime()[3] >= 18 or utime.localtime()[3] <= 1):
 
         light_pin.off()
         print('light on')
@@ -32,7 +36,7 @@ while True:
         light_pin.on()
         print('light off')
 
-    if not (count % 30):
+    if not count % 30:
         for i in range(NUM_PLANTS):
             try:
                 val = uart.readline()
