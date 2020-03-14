@@ -9,7 +9,7 @@ import uos
 from ntptime import settime
 import utime
 
-SERVER_IP = '192.168.178.3'
+PI_IP = '192.168.178.3'
 NUM_PLANTS = 3
 
 light_pin = Pin(5, Pin.OUT)
@@ -49,7 +49,7 @@ while True:
                 soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 try:
                     print('trying')
-                    soc.connect((SERVER_IP, 1234))
+                    soc.connect((PI_IP, 1234))
                     print('connected')
                     soc.send(val)
                     print('send')
